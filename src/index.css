@@ -65,7 +65,7 @@ code {
 .film_info {
   padding: 20px;
   display: flex;
-  height: 130px;
+  height: 115px;
   flex-direction: column;
   justify-content: space-between;
   font-size: 1.1em;
@@ -84,7 +84,6 @@ code {
   background-color: cornflowerblue;
   color: white;
   margin: 0;
-  margin-top: 10px;
   font-weight: bold;
 }
 
@@ -102,7 +101,7 @@ code {
   padding-left: 5%;
   padding-right: 5%;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
 }
 
 .container p {
@@ -111,7 +110,7 @@ code {
 
 .image {
   width: 650px;
-  height: 460px;
+  height: 780px;
   background-color: lightgray;
   object-fit: cover;
   border-radius: 5px;
@@ -203,7 +202,6 @@ code {
 
 .info_container {
   display: flex;
-  justify-content: space-between;
   flex-direction: column;
 }
 
@@ -211,7 +209,7 @@ code {
   margin: 0;
   font-size: 1.3em;
   font-weight: bold;
-  margin-top: 15px;
+  margin-top: 19px;
 }
 
 #companies {
@@ -248,16 +246,20 @@ code {
   font-weight: bold;
 }
 
+mt-0 {
+  margin-top: 0;
+}
+
 @media screen and (max-width: 1200px) {
   .container {
-    flex-wrap: wrap;
+    flex-direction: column;
     margin-top: 30px;
+    margin-bottom: 30px;
   }
-  .info_container {
-    margin-top: 25px;
-    margin-bottom: 15px;
-  }
+  
   .image {
     width: 100%;
+    height: 550px;
+    margin-bottom: 30px;
   }
 }

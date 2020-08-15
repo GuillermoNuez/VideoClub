@@ -13,9 +13,10 @@ const Film = (props) => (
     <div className="film_info">
       <h3>{props.film.title}</h3>
       <div>
-        <span>Release date : {props.film.release_date}</span>
-        <br />
-        <p className="rating">{props.film.vote_average}</p>
+        <div className="film-row">
+          <p className="rating">{props.film.vote_average}</p>
+          <span>{props.film.release_date}</span>
+        </div>
       </div>
     </div>
   </Link>

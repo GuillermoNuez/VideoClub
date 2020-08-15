@@ -15,6 +15,9 @@ export default class ViewFilm extends Component {
       movie: "",
       genres: [],
       companies: [],
+      runtime: "Not specified",
+      release_date: "Not specified",
+      overview: "Overview not specified",
     };
   }
 
@@ -32,6 +35,36 @@ export default class ViewFilm extends Component {
             genres: movie.genres,
             companies: movie.production_companies,
           });
+
+          if (movie.release_date != "") {
+            this.setState({
+              release_date: movie.release_date,
+            });
+          }
+
+          if (movie.overview != "") {
+            this.setState({
+              overview: movie.overview,
+            });
+          }
+
+          console.log(movie);
+          if (this.state.movie.runtime > 0) {
+            var hours = this.state.movie.runtime / 60;
+            var rhours = Math.floor(hours);
+            var minutes = (hours - rhours) * 60;
+            var rminutes = Math.round(minutes);
+
+            if (rhours == 0) {
+              this.setState({
+                runtime: rminutes + " minute(s).",
+              });
+            } else {
+              this.setState({
+                runtime: rhours + " hour(s) and " + rminutes + " minute(s).",
+              });
+            }
+          }
         }
       });
   }
@@ -79,10 +112,14 @@ export default class ViewFilm extends Component {
                   <h1>{this.state.movie.title}</h1>
                   <p className="score">{this.state.movie.vote_average}</p>
                 </div>
-                <p>{this.state.movie.overview}</p>
+                <p>{this.state.overview}</p>
                 <p>
-                  <span className="bold">Release date:</span>{" "}
-                  {this.state.movie.release_date}
+                  <span className="bold">Release date: </span>
+                  {this.state.release_date}
+                </p>
+                <p>
+                  <span className="bold">Runtime: </span>
+                  {this.state.runtime}
                 </p>
               </div>
               <div className="info_container">
