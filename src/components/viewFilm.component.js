@@ -12,7 +12,7 @@ export default class ViewFilm extends Component {
     this.printGenres = this.printGenres.bind(this);
     this.printCompanies = this.printCompanies.bind(this);
     this.state = {
-      movie: [],
+      movie: "",
       genres: [],
       companies: [],
     };
@@ -26,11 +26,13 @@ export default class ViewFilm extends Component {
     )
       .then((movie) => movie.json())
       .then((movie) => {
-        this.setState({
-          movie: movie,
-          genres: movie.genres,
-          companies: movie.production_companies,
-        });
+        if (movie.success != false) {
+          this.setState({
+            movie: movie,
+            genres: movie.genres,
+            companies: movie.production_companies,
+          });
+        }
       });
   }
 
@@ -59,40 +61,51 @@ export default class ViewFilm extends Component {
   }
 
   render() {
-    return (
-      <div>
-        <Navbar />
-        <div className="container">
-          <img
-            className="image"
-            src={
-              "http://image.tmdb.org/t/p/original/" +
-              this.state.movie.poster_path
-            }
-          ></img>
-          <div className="info_container">
-            <div>
-              <div className="film-row">
-                <h1>{this.state.movie.title}</h1>
-                <p className="score">{this.state.movie.vote_average}</p>
+    if (this.state.movie != "") {
+      return (
+        <div>
+          <Navbar />
+          <div className="container">
+            <img
+              className="image"
+              src={
+                "http://image.tmdb.org/t/p/original/" +
+                this.state.movie.poster_path
+              }
+            ></img>
+            <div className="info_container">
+              <div>
+                <div className="film-row">
+                  <h1>{this.state.movie.title}</h1>
+                  <p className="score">{this.state.movie.vote_average}</p>
+                </div>
+                <p>{this.state.movie.overview}</p>
+                <p>
+                  <span className="bold">Release date:</span>{" "}
+                  {this.state.movie.release_date}
+                </p>
               </div>
-              <p>{this.state.movie.overview}</p>
-              <p>
-                <span className="bold">Release date:</span>{" "}
-                {this.state.movie.release_date}
-              </p>
-            </div>
-            <div className="info_container">
-              <p id="companies">Production Companies</p>
-              <div className="genreList">{this.printCompanies()}</div>
-            </div>
-            <div className="info_container">
-              <p id="genres">Genres</p>
-              <div className="genreList">{this.printGenres()}</div>
+              <div className="info_container">
+                <p id="companies">Production Companies</p>
+                <div className="genreList">{this.printCompanies()}</div>
+              </div>
+              <div className="info_container">
+                <p id="genres">Genres</p>
+                <div className="genreList">{this.printGenres()}</div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    );
+      );
+    } else {
+      return (
+        <div>
+          <Navbar />
+          <div className="film-list">
+            <p className="oops">OOops!! Wrong film URL</p>
+          </div>
+        </div>
+      );
+    }
   }
 }
