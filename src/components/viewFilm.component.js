@@ -101,7 +101,6 @@ export default class ViewFilm extends Component {
           <div className="container">
             <img
               className="image"
-              alt="poster"
               src={
                 "http://image.tmdb.org/t/p/original/" +
                 this.state.movie.poster_path

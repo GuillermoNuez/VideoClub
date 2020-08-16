@@ -7,7 +7,6 @@ import Navbar from "./navbar.component";
 const Film = (props) => (
   <Link className="film" to={"/Movie/" + props.film.id}>
     <img
-      alt="poster"
       className="film_image"
       src={"http://image.tmdb.org/t/p/original/" + props.film.poster_path}
     ></img>
