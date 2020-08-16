@@ -29,20 +29,20 @@ export default class ViewFilm extends Component {
     )
       .then((movie) => movie.json())
       .then((movie) => {
-        if (movie.success != false) {
+        if (movie.success !== false) {
           this.setState({
             movie: movie,
             genres: movie.genres,
             companies: movie.production_companies,
           });
 
-          if (movie.release_date != "") {
+          if (movie.release_date !== "") {
             this.setState({
               release_date: movie.release_date,
             });
           }
 
-          if (movie.overview != "") {
+          if (movie.overview !== "") {
             this.setState({
               overview: movie.overview,
             });
@@ -55,7 +55,7 @@ export default class ViewFilm extends Component {
             var minutes = (hours - rhours) * 60;
             var rminutes = Math.round(minutes);
 
-            if (rhours == 0) {
+            if (rhours === 0) {
               this.setState({
                 runtime: rminutes + " minute(s).",
               });
@@ -94,13 +94,14 @@ export default class ViewFilm extends Component {
   }
 
   render() {
-    if (this.state.movie != "") {
+    if (this.state.movie !== "") {
       return (
         <div>
           <Navbar />
           <div className="container">
             <img
               className="image"
+              alt="poster"
               src={
                 "http://image.tmdb.org/t/p/original/" +
                 this.state.movie.poster_path

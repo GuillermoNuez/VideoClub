@@ -7,6 +7,7 @@ import Navbar from "./navbar.component";
 const Film = (props) => (
   <Link className="film" to={"/Movie/" + props.film.id}>
     <img
+      alt="poster"
       className="film_image"
       src={"http://image.tmdb.org/t/p/original/" + props.film.poster_path}
     ></img>
@@ -57,7 +58,7 @@ export default class Index extends Component {
   //Function that prints the films
 
   FilmList() {
-    if (this.state.movies != undefined) {
+    if (this.state.movies !== undefined) {
       return this.state.movies.map((currentfilm) => {
         return <Film film={currentfilm} />;
       });
@@ -73,7 +74,7 @@ export default class Index extends Component {
       goBackClass: "",
     });
     var aux = this.state.currentpage + 1;
-    if (this.state.searchimput != "") {
+    if (this.state.searchimput !== "") {
       this.updateFilmsList(
         "https://api.themoviedb.org/3/search/movie?api_key=89f05d85f1faf7954783a66526994a3e&query=" +
           this.state.searchimput +
@@ -94,7 +95,7 @@ export default class Index extends Component {
       movies: [],
       goBackClass: "hidden",
     });
-    if (this.state.searchimput != "") {
+    if (this.state.searchimput !== "") {
       this.updateFilmsList(
         "https://api.themoviedb.org/3/search/movie?api_key=89f05d85f1faf7954783a66526994a3e&query=" +
           this.state.searchimput +
@@ -115,7 +116,7 @@ export default class Index extends Component {
       movies: [],
       goBackClass: "",
     });
-    if (this.state.searchimput != "") {
+    if (this.state.searchimput !== "") {
       this.updateFilmsList(
         "https://api.themoviedb.org/3/search/movie?api_key=89f05d85f1faf7954783a66526994a3e&query=" +
           this.state.searchimput +
@@ -141,12 +142,12 @@ export default class Index extends Component {
 
       var aux = this.state.currentpage - 1;
 
-      if (aux == 1) {
+      if (aux === 1) {
         this.setState({
           goBackClass: "hidden",
         });
       }
-      if (this.state.searchimput != "") {
+      if (this.state.searchimput !== "") {
         this.updateFilmsList(
           "https://api.themoviedb.org/3/search/movie?api_key=89f05d85f1faf7954783a66526994a3e&query=" +
             this.state.searchimput +
@@ -175,7 +176,7 @@ export default class Index extends Component {
         });
         var aux = this.state.totalpages;
 
-        if (this.state.currentpage == aux) {
+        if (this.state.currentpage === aux) {
           this.setState({
             goForwardClass: "hidden",
           });
@@ -184,11 +185,10 @@ export default class Index extends Component {
             goForwardClass: "",
           });
         }
-        if (aux == 0) {
+        if (aux === 0) {
           this.setState({
             paginationClass: "hidden",
             goForwardClass: "hidden",
-            paginationClass: "hidden",
             oops: "oops",
           });
         } else {
@@ -203,7 +203,7 @@ export default class Index extends Component {
   //Function that is executed every time the imput field changes
 
   onChangeSearch(e) {
-    if (e.target.value == " ") {
+    if (e.target.value === " ") {
       this.setState({
         searchimput: "",
       });
@@ -215,7 +215,7 @@ export default class Index extends Component {
         goBackClass: "hidden",
       });
 
-      if (e.target.value == "") {
+      if (e.target.value === "") {
         this.setState({
           searchimput: e.target.value,
         });
