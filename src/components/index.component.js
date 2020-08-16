@@ -259,7 +259,7 @@ export default class Index extends Component {
           <p className={this.state.goBackClass} onClick={this.paginationDown}>
             &#8249;
           </p>
-          <div id="current" className={this.state.paginationClass}>
+          <div className={this.state.paginationClass}>
             <p>{this.state.currentpage}</p>
           </div>
           <p className={this.state.goForwardClass} onClick={this.paginationUp}>
